@@ -1,6 +1,10 @@
-# AI Tutor - Personalized Learning with AI
+# Project-Minerva
 
-An intelligent tutoring system featuring two AI agents powered by Google's Gemini API:
+An AI tutor that plans, adapts, and teaches—like having a mentor on demand.
+
+## About
+
+Project-Minerva is an intelligent tutoring system featuring two AI agents powered by Google's Gemini API:
 
 - **AI Syllabus Agent**: Creates personalized curriculum based on user's previous knowledge, experience, class level, test scores, grades, and learning goals
 - **AI Teacher Agent**: Provides comprehensive teaching with text explanations, visual descriptions, examples, and practice exercises
@@ -33,8 +37,8 @@ An intelligent tutoring system featuring two AI agents powered by Google's Gemin
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd ai-tutor
+git clone https://github.com/wired07/Project-Minerva.git
+cd Project-Minerva
 ```
 
 2. Install dependencies:
