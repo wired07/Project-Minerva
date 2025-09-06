@@ -67,37 +67,45 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
   const suggestedTopics = extractTopicsFromCurriculum();
 
   return (
-    <div className="card max-w-4xl mx-auto">
-      <div className="flex items-center gap-3 mb-6">
-        <GraduationCap className="w-8 h-8 text-primary-600" />
-        <h2 className="text-2xl font-bold text-gray-900">AI Teacher Agent</h2>
-      </div>
-      
-      <p className="text-gray-600 mb-6">
-        Ask me to teach you any topic! I'll provide comprehensive explanations with examples, visuals, and practice exercises.
-      </p>
-
-      {curriculum && suggestedTopics.length > 0 && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <h3 className="text-lg font-medium text-blue-900 mb-3 flex items-center gap-2">
-            <BookOpen className="w-5 h-5" />
-            Suggested Topics from Your Curriculum
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {suggestedTopics.map((suggestedTopic, index) => (
-              <button
-                key={index}
-                onClick={() => setTopic(suggestedTopic)}
-                className="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm rounded-full transition-colors duration-200"
-              >
-                {suggestedTopic}
-              </button>
-            ))}
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+            <GraduationCap className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">AI Teacher Agent</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Learn any topic with expert guidance</p>
           </div>
         </div>
-      )}
+        
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          Ask me to teach you any topic! I'll provide comprehensive explanations with examples, visuals, and practice exercises.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="p-6">
+        {curriculum && suggestedTopics.length > 0 && (
+          <div className="mb-6 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl">
+            <h3 className="text-lg font-medium text-orange-900 dark:text-orange-300 mb-3 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Suggested Topics from Your Curriculum
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {suggestedTopics.map((suggestedTopic, index) => (
+                <button
+                  key={index}
+                  onClick={() => setTopic(suggestedTopic)}
+                  className="px-3 py-1 bg-orange-100 dark:bg-orange-800 hover:bg-orange-200 dark:hover:bg-orange-700 text-orange-800 dark:text-orange-200 text-sm rounded-full transition-colors duration-200"
+                >
+                  {suggestedTopic}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Topic to Learn *
@@ -159,29 +167,30 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
               Start Learning
             </>
           )}
-        </button>
-      </form>
+          </button>
+        </form>
 
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 text-red-500" />
-          <span className="text-red-700">{error}</span>
-        </div>
-      )}
+        {error && (
+          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
+            <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
+            <span className="text-red-700 dark:text-red-300">{error}</span>
+          </div>
+        )}
 
-      {content && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <div className="flex items-center gap-2 mb-3">
-            <CheckCircle className="w-5 h-5 text-green-500" />
-            <span className="text-green-700 font-medium">Learning Content</span>
+        {content && (
+          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div className="flex items-center gap-2 mb-3">
+              <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
+              <span className="text-green-700 dark:text-green-300 font-medium">Learning Content</span>
+            </div>
+            <div className="prose prose-sm max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {content}
+              </ReactMarkdown>
+            </div>
           </div>
-          <div className="prose prose-sm max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {content}
-            </ReactMarkdown>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

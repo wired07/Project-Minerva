@@ -66,18 +66,26 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
   };
 
   return (
-    <div className="card max-w-4xl mx-auto">
-      <div className="flex items-center gap-3 mb-6">
-        <BookOpen className="w-8 h-8 text-primary-600" />
-        <h2 className="text-2xl font-bold text-gray-900">AI Syllabus Agent</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+            <BookOpen className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">AI Syllabus Agent</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Create your personalized learning curriculum</p>
+          </div>
+        </div>
+        
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          Tell me about yourself and your learning goals, and I'll create a personalized curriculum just for you!
+        </p>
       </div>
-      
-      <p className="text-gray-600 mb-6">
-        Tell me about yourself and your learning goals, and I'll create a personalized curriculum just for you!
-      </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Previous Knowledge *
@@ -199,29 +207,30 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               Generate My Curriculum
             </>
           )}
-        </button>
-      </form>
+          </button>
+        </form>
 
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 text-red-500" />
-          <span className="text-red-700">{error}</span>
-        </div>
-      )}
+        {error && (
+          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
+            <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
+            <span className="text-red-700 dark:text-red-300">{error}</span>
+          </div>
+        )}
 
-      {curriculum && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <div className="flex items-center gap-2 mb-3">
-            <CheckCircle className="w-5 h-5 text-green-500" />
-            <span className="text-green-700 font-medium">Your Personalized Curriculum</span>
+        {curriculum && (
+          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div className="flex items-center gap-2 mb-3">
+              <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
+              <span className="text-green-700 dark:text-green-300 font-medium">Your Personalized Curriculum</span>
+            </div>
+            <div className="prose prose-sm max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {curriculum}
+              </ReactMarkdown>
+            </div>
           </div>
-          <div className="prose prose-sm max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {curriculum}
-            </ReactMarkdown>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
