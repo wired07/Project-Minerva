@@ -9,7 +9,7 @@ const getGeminiClient = () => {
 
 const getGeminiModel = () => {
   const genAI = getGeminiClient();
-  return genAI.getGenerativeModel({ model: 'gemini-pro' });
+  return genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
 };
 
 export interface GeminiResponse {
