@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { GraduationCap, Loader2, CheckCircle, AlertCircle, BookOpen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -52,6 +52,35 @@ export default function TeacherAgent({ curriculum, syllabusTopics = [] }: Teache
   };
 
   const suggestedTopics = syllabusTopics;
+
+  const formatTeacherContent = (text: string): string => {
+    const lines = text.split('\n');
+    const formattedLines: string[] = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmedLine = line.trim();
+      
+      // Add the current line
+      formattedLines.push(line);
+      
+      // Check if this is a main section header (## What is, ## Key Concepts, etc.)
+      if (trimmedLine.match(/^##\s+(What is|Key Concepts|Real-World Examples|Step-by-Step Process|Practice Questions|Common Mistakes|Tips for Success)/i)) {
+        // Add two empty lines after main section headers
+        formattedLines.push('', '');
+      }
+      // Check if this is a subsection header (### or numbered items)
+      else if (trimmedLine.match(/^###\s+/) || 
+               trimmedLine.match(/^\d+\.\s+/) ||
+               trimmedLine.match(/^•\s+/) ||
+               trimmedLine.match(/^-\s+/)) {
+        // Add one empty line after subsection headers
+        formattedLines.push('');
+      }
+    }
+    
+    return formattedLines.join('\n');
+  };
 
   return (
     <div className="card">
@@ -170,8 +199,115 @@ export default function TeacherAgent({ curriculum, syllabusTopics = [] }: Teache
             <span className="text-green-700 dark:text-green-300 font-medium">Learning Content</span>
           </div>
           <div className="prose prose-sm max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {content}
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <div className="mt-8 mb-6">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 border-b-2 border-blue-500 dark:border-blue-400 pb-2 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-lg">
+                      {children}
+                    </h2>
+                  </div>
+                ),
+                h3: ({ children }) => (
+                  <div className="mt-6 mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-md border-l-4 border-orange-500">
+                      {children}
+                    </h3>
+                  </div>
+                ),
+                h4: ({ children }) => (
+                  <div className="mt-4 mb-2">
+                    <h4 className="text-base font-medium text-gray-700 dark:text-gray-300 bg-yellow-50 dark:bg-yellow-900/20 px-2 py-1 rounded border-l-2 border-yellow-500">
+                      {children}
+                    </h4>
+                  </div>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc list-inside space-y-2 my-4 ml-4">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal list-inside space-y-2 my-4 ml-4">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {children}
+                  </li>
+                ),
+                p: ({ children }) => (
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed my-3">
+                    {children}
+                  </p>
+                ),
+                code: ({ children, className }) => {
+                  const isInline = !className;
+                  if (isInline) {
+                    return (
+                      <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded text-sm font-mono">
+                        {children}
+                      </code>
+                    );
+                  }
+                  return (
+                    <div className="relative my-4">
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(String(children));
+                        }}
+                        className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs font-medium transition-colors duration-200 z-10"
+                      >
+                        Copy
+                      </button>
+                      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto border">
+                        <code className="text-sm font-mono">
+                          {children}
+                        </code>
+                      </pre>
+                    </div>
+                  );
+                },
+                pre: ({ children }) => {
+                  const preRef = useRef<HTMLPreElement>(null);
+                  return (
+                    <div className="relative my-4">
+                      <button
+                        onClick={() => {
+                          if (preRef.current) {
+                            navigator.clipboard.writeText(preRef.current.textContent || '');
+                          }
+                        }}
+                        className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs font-medium transition-colors duration-200 z-10"
+                      >
+                        Copy
+                      </button>
+                      <pre ref={preRef} className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto border">
+                        {children}
+                      </pre>
+                    </div>
+                  );
+                },
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-2 my-4 italic text-gray-700 dark:text-gray-300">
+                    {children}
+                  </blockquote>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold text-gray-900 dark:text-gray-100 bg-yellow-100 dark:bg-yellow-900/30 px-1 rounded">
+                    {children}
+                  </strong>
+                ),
+                em: ({ children }) => (
+                  <em className="italic text-blue-600 dark:text-blue-400 font-medium">
+                    {children}
+                  </em>
+                )
+              }}
+            >
+              {formatTeacherContent(content)}
             </ReactMarkdown>
           </div>
         </div>

@@ -94,36 +94,46 @@ Make it concise, well-structured, and focused on their specific needs.`;
 export async function teachTopic(topic: string, userLevel: string, context: string = ''): Promise<GeminiResponse> {
   const prompt = `Teach "${topic}" to a ${userLevel} student. ${context ? `Additional context: ${context}` : ''}
 
-Format your response with clear sections:
+Format your response with clear sections and include code examples where relevant:
 
 ## What is [Topic]?
-[Clear, concise definition]
+[Clear, concise definition with **highlighted** key terms]
 
 ## Key Concepts
-• Concept 1: [Explanation]
-• Concept 2: [Explanation]
+• **Concept 1**: [Detailed explanation with examples]
+• **Concept 2**: [Detailed explanation with examples]
 
 ## Real-World Examples
-• Example 1: [Description]
-• Example 2: [Description]
+• Example 1: [Description with practical applications]
+• Example 2: [Description with practical applications]
 
 ## Step-by-Step Process
-1. Step 1: [Description]
-2. Step 2: [Description]
+1. **Step 1**: [Detailed description]
+2. **Step 2**: [Detailed description]
+
+## Code Examples
+Include relevant code snippets in proper code blocks:
+
+\`\`\`language
+// Example code here
+function example() {
+  return "Hello World";
+}
+\`\`\`
 
 ## Practice Questions
-1. Question 1
-2. Question 2
+1. **Question 1**: [Clear question with context]
+2. **Question 2**: [Clear question with context]
 
 ## Common Mistakes to Avoid
-• Mistake 1: [Explanation]
-• Mistake 2: [Explanation]
+• **Mistake 1**: [Explanation of why it's wrong and how to avoid it]
+• **Mistake 2**: [Explanation of why it's wrong and how to avoid it]
 
 ## Tips for Success
-• Tip 1
-• Tip 2
+• **Tip 1**: [Actionable advice]
+• **Tip 2**: [Actionable advice]
 
-Keep explanations clear, engaging, and appropriate for the student's level.`;
+Use **bold text** for emphasis, include code blocks for programming concepts, and keep explanations clear, engaging, and appropriate for the student's level.`;
 
   return generateText(prompt);
 }
