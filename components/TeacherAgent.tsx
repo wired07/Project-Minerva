@@ -74,7 +74,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
             <GraduationCap className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">Teacher agent</h2>
+            <h2 className="text-lg font-semibold">Teacher Agent</h2>
             <p className="text-sm text-gray-600 dark:text-gray-400">Learn any topic with expert guidance</p>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
         <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
           <h3 className="text-base font-medium mb-3 flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
-            Suggested topics from your curriculum
+            Suggested Topics From Your Curriculum
           </h3>
           <div className="flex flex-wrap gap-2">
             {suggestedTopics.map((suggestedTopic, index) => (
@@ -107,21 +107,21 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-2">
-            Topic to learn *
+            Topic to Learn *
           </label>
           <input
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className="input-field"
-            placeholder="e.g., Quadratic equations, Photosynthesis, World War II"
+            placeholder="e.g., Quadratic Equations, Photosynthesis, World War II"
             required
           />
         </div>
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            Your level *
+            Your Level *
           </label>
           <select
             value={userLevel}
@@ -140,7 +140,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            Additional context (optional)
+            Additional Context (Optional)
           </label>
           <textarea
             value={context}
@@ -163,7 +163,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
           ) : (
             <>
               <GraduationCap className="w-4 h-4" />
-              Start learning
+              Start Learning
             </>
           )}
         </button>
@@ -180,7 +180,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-            <span className="text-green-700 dark:text-green-300 font-medium">Learning content</span>
+            <span className="text-green-700 dark:text-green-300 font-medium">Learning Content</span>
           </div>
           <div className="prose prose-sm max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

@@ -73,7 +73,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
             <BookOpen className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">Syllabus agent</h2>
+            <h2 className="text-lg font-semibold">Syllabus Agent</h2>
             <p className="text-sm text-gray-600 dark:text-gray-400">Create your personalized learning curriculum</p>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium mb-2">
-              Previous knowledge *
+              Previous Knowledge *
             </label>
             <textarea
               name="previousKnowledge"
@@ -101,7 +101,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              Experience level *
+              Experience Level *
             </label>
             <select
               name="experience"
@@ -119,7 +119,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              Class/grade *
+              Class/Grade *
             </label>
             <input
               type="text"
@@ -134,7 +134,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              Test scores (optional)
+              Test Scores (Optional)
             </label>
             <input
               type="text"
@@ -148,7 +148,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              Recent grades (optional)
+              Recent Grades (Optional)
             </label>
             <input
               type="text"
@@ -162,7 +162,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              Subjects of interest *
+              Subjects of Interest *
             </label>
             <input
               type="text"
@@ -178,7 +178,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            Learning goals *
+            Learning Goals *
           </label>
           <textarea
             name="learningGoals"
@@ -198,12 +198,12 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Generating curriculum...
+              Generating Curriculum...
             </>
           ) : (
             <>
               <BookOpen className="w-4 h-4" />
-              Generate my curriculum
+              Generate My Curriculum
             </>
           )}
         </button>
@@ -220,7 +220,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-            <span className="text-green-700 dark:text-green-300 font-medium">Your personalized curriculum</span>
+            <span className="text-green-700 dark:text-green-300 font-medium">Your Personalized Curriculum</span>
           </div>
           <div className="prose prose-sm max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

@@ -13,11 +13,11 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Header */}
         <header className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">hi, i am minerva!</h1>
+          <h1 className="text-4xl font-bold mb-4">Hi, I am Minerva!</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            i am an intelligent tutoring system, powered by advanced AI.
+            I am an intelligent tutoring system, powered by advanced AI.
             <br />
-            mainly work in personalized learning, curriculum design and love teaching people.
+            I mainly work in personalized learning, curriculum design, and love teaching people.
           </p>
         </header>
 
@@ -32,7 +32,7 @@ export default function Home() {
                   : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
               }`}
             >
-              about
+              About
             </button>
             <button
               onClick={() => setActiveSection('syllabus')}
@@ -42,7 +42,7 @@ export default function Home() {
                   : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
               }`}
             >
-              syllabus agent
+              Syllabus Agent
             </button>
             <button
               onClick={() => setActiveSection('teacher')}
@@ -52,7 +52,7 @@ export default function Home() {
                   : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
               }`}
             >
-              teacher agent
+              Teacher Agent
             </button>
           </div>
         </nav>
@@ -68,19 +68,19 @@ export default function Home() {
                   <div className="card">
                     <div className="flex items-center gap-3 mb-3">
                       <BookOpen className="w-5 h-5" />
-                      <h3 className="font-semibold">Personalized curriculum</h3>
+                      <h3 className="font-semibold">Personalized Curriculum</h3>
                     </div>
                     <p className="section-content">
-                      Create custom learning paths tailored to your knowledge, goals, and preferences
+                      Create custom learning paths tailored to your knowledge, goals, and preferences.
                     </p>
                   </div>
                   <div className="card">
                     <div className="flex items-center gap-3 mb-3">
                       <GraduationCap className="w-5 h-5" />
-                      <h3 className="font-semibold">Expert teaching</h3>
+                      <h3 className="font-semibold">Expert Teaching</h3>
                     </div>
                     <p className="section-content">
-                      Comprehensive explanations with examples, visuals, and practice exercises
+                      Comprehensive explanations with examples, visuals, and practice exercises.
                     </p>
                   </div>
                 </div>
@@ -88,16 +88,16 @@ export default function Home() {
 
               {/* How it works */}
               <section>
-                <h2 className="section-title">How it works</h2>
+                <h2 className="section-title">How It Works</h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-8 h-8 bg-black dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                       1
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Tell me about yourself</h3>
+                      <h3 className="font-semibold mb-2">Tell Me About Yourself</h3>
                       <p className="section-content">
-                        Share your previous knowledge, experience level, and learning goals
+                        Share your previous knowledge, experience level, and learning goals.
                       </p>
                     </div>
                   </div>
@@ -106,9 +106,9 @@ export default function Home() {
                       2
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Get your curriculum</h3>
+                      <h3 className="font-semibold mb-2">Get Your Curriculum</h3>
                       <p className="section-content">
-                        Receive a personalized learning plan designed just for you
+                        Receive a personalized learning plan designed just for you.
                       </p>
                     </div>
                   </div>
@@ -117,9 +117,9 @@ export default function Home() {
                       3
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Start learning</h3>
+                      <h3 className="font-semibold mb-2">Start Learning</h3>
                       <p className="section-content">
-                        Dive deep into any topic with expert guidance and explanations
+                        Dive deep into any topic with expert guidance and explanations.
                       </p>
                     </div>
                   </div>
@@ -156,9 +156,9 @@ export default function Home() {
           {activeSection === 'syllabus' && (
             <div>
               <div className="text-center mb-8">
-                <h2 className="section-title">Syllabus agent</h2>
+                <h2 className="section-title">Syllabus Agent</h2>
                 <p className="section-content max-w-2xl mx-auto">
-                  Create your personalized learning curriculum based on your knowledge, goals, and preferences
+                  Create your personalized learning curriculum based on your knowledge, goals, and preferences.
                 </p>
               </div>
               <SyllabusAgent onCurriculumGenerated={() => {}} />
@@ -168,9 +168,9 @@ export default function Home() {
           {activeSection === 'teacher' && (
             <div>
               <div className="text-center mb-8">
-                <h2 className="section-title">Teacher agent</h2>
+                <h2 className="section-title">Teacher Agent</h2>
                 <p className="section-content max-w-2xl mx-auto">
-                  Learn any topic with comprehensive explanations, examples, and practice exercises
+                  Learn any topic with comprehensive explanations, examples, and practice exercises.
                 </p>
               </div>
               <TeacherAgent />
