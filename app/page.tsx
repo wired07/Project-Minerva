@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Brain, BookOpen, GraduationCap, Github, Twitter, ExternalLink, Sun, Moon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Brain, BookOpen, GraduationCap, Github, Twitter, ExternalLink } from 'lucide-react';
 import SyllabusAgent from '@/components/SyllabusAgent';
 import TeacherAgent from '@/components/TeacherAgent';
 
@@ -9,34 +9,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<'about' | 'syllabus' | 'teacher'>('about');
   const [curriculum, setCurriculum] = useState('');
   const [syllabusTopics, setSyllabusTopics] = useState<string[]>([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-    
-    setIsDarkMode(shouldUseDark);
-    if (shouldUseDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
 
   const handleCurriculumGenerated = (newCurriculum: string, topics: string[]) => {
     setCurriculum(newCurriculum);
@@ -162,28 +134,6 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* Theme Toggle */}
-              <section>
-                <h2 className="section-title">Theme</h2>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={toggleDarkMode}
-                    className="flex items-center gap-3 px-4 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
-                  >
-                    {isDarkMode ? (
-                      <>
-                        <Sun className="w-5 h-5" />
-                        <span>Switch to Light Mode</span>
-                      </>
-                    ) : (
-                      <>
-                        <Moon className="w-5 h-5" />
-                        <span>Switch to Dark Mode</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </section>
 
               {/* Links */}
               <section>

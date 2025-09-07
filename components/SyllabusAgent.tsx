@@ -59,6 +59,37 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
     return Array.from(new Set(topics)).slice(0, 15);
   };
 
+  const formatCurriculumText = (text: string): string => {
+    const lines = text.split('\n');
+    const formattedLines: string[] = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmedLine = line.trim();
+      
+      // Add the current line
+      formattedLines.push(line);
+      
+      // Check if this is a module header (## Module or similar)
+      if (trimmedLine.match(/^##\s+Module/i) || 
+          trimmedLine.match(/^##\s+Chapter/i) || 
+          trimmedLine.match(/^##\s+Unit/i) ||
+          trimmedLine.match(/^##\s+Part/i)) {
+        // Add two empty lines after module headers
+        formattedLines.push('', '');
+      }
+      // Check if this is a topic header (### Topic or similar)
+      else if (trimmedLine.match(/^###\s+/) || 
+               trimmedLine.match(/^\d+\.\s+/) ||
+               trimmedLine.match(/^Topic\s+\d+/i)) {
+        // Add one empty line after topic headers
+        formattedLines.push('');
+      }
+    }
+    
+    return formattedLines.join('\n');
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -261,8 +292,46 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
             <span className="text-green-700 dark:text-green-300 font-medium">Your Personalized Curriculum</span>
           </div>
           <div className="prose prose-sm max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {curriculum}
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <div className="mt-6 mb-4">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700 pb-2">
+                      {children}
+                    </h2>
+                  </div>
+                ),
+                h3: ({ children }) => (
+                  <div className="mt-4 mb-2">
+                    <h3 className="text-base font-medium text-gray-800 dark:text-gray-200">
+                      {children}
+                    </h3>
+                  </div>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc list-inside space-y-1 my-2">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal list-inside space-y-1 my-2">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {children}
+                  </li>
+                ),
+                p: ({ children }) => (
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed my-2">
+                    {children}
+                  </p>
+                )
+              }}
+            >
+              {formatCurriculumText(curriculum)}
             </ReactMarkdown>
           </div>
         </div>
