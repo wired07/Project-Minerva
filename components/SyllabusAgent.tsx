@@ -73,13 +73,13 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
             <BookOpen className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">syllabus agent</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">create your personalized learning curriculum</p>
+            <h2 className="text-lg font-semibold">Syllabus agent</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Create your personalized learning curriculum</p>
           </div>
         </div>
         
         <p className="section-content">
-          tell me about yourself and your learning goals, and i'll create a personalized curriculum just for you!
+          Tell me about yourself and your learning goals, and I'll create a personalized curriculum just for you!
         </p>
       </div>
 
@@ -87,21 +87,21 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium mb-2">
-              previous knowledge *
+              Previous knowledge *
             </label>
             <textarea
               name="previousKnowledge"
               value={formData.previousKnowledge}
               onChange={handleInputChange}
               className="input-field h-20 resize-none"
-              placeholder="describe what you already know about the subject..."
+              placeholder="Describe what you already know about the subject..."
               required
             />
           </div>
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              experience level *
+              Experience level *
             </label>
             <select
               name="experience"
@@ -110,16 +110,16 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               className="input-field"
               required
             >
-              <option value="">select your level</option>
-              <option value="Beginner">beginner</option>
-              <option value="Intermediate">intermediate</option>
-              <option value="Advanced">advanced</option>
+              <option value="">Select your level</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
             </select>
           </div>
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              class/grade *
+              Class/grade *
             </label>
             <input
               type="text"
@@ -127,14 +127,14 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.class}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., grade 10, college freshman"
+              placeholder="e.g., Grade 10, College Freshman"
               required
             />
           </div>
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              test scores (optional)
+              Test scores (optional)
             </label>
             <input
               type="text"
@@ -142,13 +142,13 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.testScores}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., sat: 1200, math: 85%"
+              placeholder="e.g., SAT: 1200, Math: 85%"
             />
           </div>
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              recent grades (optional)
+              Recent grades (optional)
             </label>
             <input
               type="text"
@@ -156,13 +156,13 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.grades}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., a in math, b+ in science"
+              placeholder="e.g., A in Math, B+ in Science"
             />
           </div>
           
           <div>
             <label className="block text-sm font-medium mb-2">
-              subjects of interest *
+              Subjects of interest *
             </label>
             <input
               type="text"
@@ -170,7 +170,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.subjects}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., mathematics, physics, chemistry"
+              placeholder="e.g., Mathematics, Physics, Chemistry"
               required
             />
           </div>
@@ -178,14 +178,14 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            learning goals *
+            Learning goals *
           </label>
           <textarea
             name="learningGoals"
             value={formData.learningGoals}
             onChange={handleInputChange}
             className="input-field h-24 resize-none"
-            placeholder="what do you want to achieve? what are your learning objectives?"
+            placeholder="What do you want to achieve? What are your learning objectives?"
             required
           />
         </div>
@@ -198,12 +198,12 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              generating curriculum...
+              Generating curriculum...
             </>
           ) : (
             <>
               <BookOpen className="w-4 h-4" />
-              generate my curriculum
+              Generate my curriculum
             </>
           )}
         </button>
@@ -220,7 +220,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-            <span className="text-green-700 dark:text-green-300 font-medium">your personalized curriculum</span>
+            <span className="text-green-700 dark:text-green-300 font-medium">Your personalized curriculum</span>
           </div>
           <div className="prose prose-sm max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

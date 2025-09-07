@@ -74,13 +74,13 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
             <GraduationCap className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">teacher agent</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">learn any topic with expert guidance</p>
+            <h2 className="text-lg font-semibold">Teacher agent</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Learn any topic with expert guidance</p>
           </div>
         </div>
         
         <p className="section-content">
-          ask me to teach you any topic! i'll provide comprehensive explanations with examples, visuals, and practice exercises.
+          Ask me to teach you any topic! I'll provide comprehensive explanations with examples, visuals, and practice exercises.
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
         <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
           <h3 className="text-base font-medium mb-3 flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
-            suggested topics from your curriculum
+            Suggested topics from your curriculum
           </h3>
           <div className="flex flex-wrap gap-2">
             {suggestedTopics.map((suggestedTopic, index) => (
@@ -107,21 +107,21 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-2">
-            topic to learn *
+            Topic to learn *
           </label>
           <input
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className="input-field"
-            placeholder="e.g., quadratic equations, photosynthesis, world war ii"
+            placeholder="e.g., Quadratic equations, Photosynthesis, World War II"
             required
           />
         </div>
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            your level *
+            Your level *
           </label>
           <select
             value={userLevel}
@@ -129,24 +129,24 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
             className="input-field"
             required
           >
-            <option value="">select your level</option>
-            <option value="Elementary (Grades K-5)">elementary (grades k-5)</option>
-            <option value="Middle School (Grades 6-8)">middle school (grades 6-8)</option>
-            <option value="High School (Grades 9-12)">high school (grades 9-12)</option>
-            <option value="College/University">college/university</option>
-            <option value="Adult Learner">adult learner</option>
+            <option value="">Select your level</option>
+            <option value="Elementary (Grades K-5)">Elementary (Grades K-5)</option>
+            <option value="Middle School (Grades 6-8)">Middle School (Grades 6-8)</option>
+            <option value="High School (Grades 9-12)">High School (Grades 9-12)</option>
+            <option value="College/University">College/University</option>
+            <option value="Adult Learner">Adult Learner</option>
           </select>
         </div>
         
         <div>
           <label className="block text-sm font-medium mb-2">
-            additional context (optional)
+            Additional context (optional)
           </label>
           <textarea
             value={context}
             onChange={(e) => setContext(e.target.value)}
             className="input-field h-20 resize-none"
-            placeholder="any specific aspects you want to focus on or questions you have..."
+            placeholder="Any specific aspects you want to focus on or questions you have..."
           />
         </div>
         
@@ -158,12 +158,12 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              teaching...
+              Teaching...
             </>
           ) : (
             <>
               <GraduationCap className="w-4 h-4" />
-              start learning
+              Start learning
             </>
           )}
         </button>
@@ -180,7 +180,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-            <span className="text-green-700 dark:text-green-300 font-medium">learning content</span>
+            <span className="text-green-700 dark:text-green-300 font-medium">Learning content</span>
           </div>
           <div className="prose prose-sm max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
