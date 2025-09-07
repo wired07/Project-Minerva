@@ -13,7 +13,7 @@ export default function Home() {
   const handleCurriculumGenerated = (newCurriculum: string, topics: string[]) => {
     setCurriculum(newCurriculum);
     setSyllabusTopics(topics);
-    setActiveSection('teacher');
+    // Keep user in syllabus agent tab to see the generated curriculum
   };
 
   return (
@@ -170,7 +170,7 @@ export default function Home() {
                   Create your personalized learning curriculum based on your knowledge, goals, and preferences.
                 </p>
               </div>
-              <SyllabusAgent onCurriculumGenerated={handleCurriculumGenerated} />
+              <SyllabusAgent onCurriculumGenerated={handleCurriculumGenerated} curriculum={curriculum} />
             </div>
           )}
 

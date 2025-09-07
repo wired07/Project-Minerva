@@ -7,9 +7,10 @@ import remarkGfm from 'remark-gfm';
 
 interface SyllabusAgentProps {
   onCurriculumGenerated: (curriculum: string, topics: string[]) => void;
+  curriculum?: string;
 }
 
-export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentProps) {
+export default function SyllabusAgent({ onCurriculumGenerated, curriculum: parentCurriculum }: SyllabusAgentProps) {
   const [formData, setFormData] = useState({
     previousKnowledge: '',
     experience: '',
@@ -285,7 +286,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
         </div>
       )}
 
-      {curriculum && (
+      {(curriculum || parentCurriculum) && (
         <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
@@ -331,7 +332,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
                 )
               }}
             >
-              {formatCurriculumText(curriculum)}
+              {formatCurriculumText(curriculum || parentCurriculum || '')}
             </ReactMarkdown>
           </div>
         </div>
