@@ -56,7 +56,7 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
     }
     
     // Remove duplicates and limit to 15 topics
-    return [...new Set(topics)].slice(0, 15);
+    return Array.from(new Set(topics)).slice(0, 15);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

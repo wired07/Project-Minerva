@@ -2,8 +2,5 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "env": {
-    "GEMINI_API_KEY": "AIzaSyBsjAWdrhhlJDbjA_1M00VGcVfYzn4Rrtw"
-  }
+  "installCommand": "npm install"
 }
