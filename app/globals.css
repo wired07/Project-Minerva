@@ -4,36 +4,48 @@
 
 @layer base {
   html {
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  body {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #000000;
+      color: #ffffff;
+    }
   }
 }
 
 @layer components {
+  .font-system {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
   .btn-primary {
-    @apply bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-sm sm:text-base;
+    @apply bg-black hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-200 text-white dark:text-black font-medium py-3 px-6 rounded-lg transition-all duration-200 text-sm;
   }
   
   .btn-secondary {
-    @apply bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg text-sm sm:text-base;
+    @apply bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-3 px-6 rounded-lg transition-all duration-200 text-sm;
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-2xl border border-gray-200 dark:border-gray-700 p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl;
+    @apply bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 transition-all duration-200 hover:shadow-md;
   }
   
   .input-field {
-    @apply w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-gray-500 text-sm sm:text-base;
+    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-sm;
   }
   
-  .claude-sidebar {
-    @apply bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700;
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4;
   }
   
-  .claude-chat-area {
-    @apply bg-gray-50 dark:bg-gray-900;
-  }
-  
-  .claude-message {
-    @apply bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm;
+  .section-content {
+    @apply text-gray-600 dark:text-gray-400 leading-relaxed;
   }
 }

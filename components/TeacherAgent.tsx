@@ -67,62 +67,61 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
   const suggestedTopics = extractTopicsFromCurriculum();
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+    <div className="card">
+      <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
-            <GraduationCap className="w-6 h-6 text-white" />
+          <div className="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center">
+            <GraduationCap className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">AI Teacher Agent</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Learn any topic with expert guidance</p>
+            <h2 className="text-lg font-semibold">teacher agent</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">learn any topic with expert guidance</p>
           </div>
         </div>
         
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-          Ask me to teach you any topic! I'll provide comprehensive explanations with examples, visuals, and practice exercises.
+        <p className="section-content">
+          ask me to teach you any topic! i'll provide comprehensive explanations with examples, visuals, and practice exercises.
         </p>
       </div>
 
-      <div className="p-3 sm:p-4 lg:p-6">
-        {curriculum && suggestedTopics.length > 0 && (
-          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl">
-            <h3 className="text-base sm:text-lg font-medium text-orange-900 dark:text-orange-300 mb-2 sm:mb-3 flex items-center gap-2">
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
-              Suggested Topics from Your Curriculum
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {suggestedTopics.map((suggestedTopic, index) => (
-                <button
-                  key={index}
-                  onClick={() => setTopic(suggestedTopic)}
-                  className="px-2 sm:px-3 py-1 bg-orange-100 dark:bg-orange-800 hover:bg-orange-200 dark:hover:bg-orange-700 text-orange-800 dark:text-orange-200 text-xs sm:text-sm rounded-full transition-colors duration-200"
-                >
-                  {suggestedTopic}
-                </button>
-              ))}
-            </div>
+      {curriculum && suggestedTopics.length > 0 && (
+        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+          <h3 className="text-base font-medium mb-3 flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            suggested topics from your curriculum
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {suggestedTopics.map((suggestedTopic, index) => (
+              <button
+                key={index}
+                onClick={() => setTopic(suggestedTopic)}
+                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm rounded-full transition-colors duration-200"
+              >
+                {suggestedTopic}
+              </button>
+            ))}
           </div>
-        )}
+        </div>
+      )}
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Topic to Learn *
+          <label className="block text-sm font-medium mb-2">
+            topic to learn *
           </label>
           <input
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className="input-field"
-            placeholder="e.g., Quadratic Equations, Photosynthesis, World War II"
+            placeholder="e.g., quadratic equations, photosynthesis, world war ii"
             required
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Your Level *
+          <label className="block text-sm font-medium mb-2">
+            your level *
           </label>
           <select
             value={userLevel}
@@ -130,24 +129,24 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
             className="input-field"
             required
           >
-            <option value="">Select your level</option>
-            <option value="Elementary (Grades K-5)">Elementary (Grades K-5)</option>
-            <option value="Middle School (Grades 6-8)">Middle School (Grades 6-8)</option>
-            <option value="High School (Grades 9-12)">High School (Grades 9-12)</option>
-            <option value="College/University">College/University</option>
-            <option value="Adult Learner">Adult Learner</option>
+            <option value="">select your level</option>
+            <option value="Elementary (Grades K-5)">elementary (grades k-5)</option>
+            <option value="Middle School (Grades 6-8)">middle school (grades 6-8)</option>
+            <option value="High School (Grades 9-12)">high school (grades 9-12)</option>
+            <option value="College/University">college/university</option>
+            <option value="Adult Learner">adult learner</option>
           </select>
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Additional Context (Optional)
+          <label className="block text-sm font-medium mb-2">
+            additional context (optional)
           </label>
           <textarea
             value={context}
             onChange={(e) => setContext(e.target.value)}
             className="input-field h-20 resize-none"
-            placeholder="Any specific aspects you want to focus on or questions you have..."
+            placeholder="any specific aspects you want to focus on or questions you have..."
           />
         </div>
         
@@ -159,38 +158,37 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Teaching...
+              teaching...
             </>
           ) : (
             <>
               <GraduationCap className="w-4 h-4" />
-              Start Learning
+              start learning
             </>
           )}
-          </button>
-        </form>
+        </button>
+      </form>
 
-        {error && (
-          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
-            <span className="text-red-700 dark:text-red-300">{error}</span>
-          </div>
-        )}
+      {error && (
+        <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
+          <span className="text-red-700 dark:text-red-300">{error}</span>
+        </div>
+      )}
 
-        {content && (
-          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-            <div className="flex items-center gap-2 mb-3">
-              <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-              <span className="text-green-700 dark:text-green-300 font-medium">Learning Content</span>
-            </div>
-            <div className="prose prose-sm max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {content}
-              </ReactMarkdown>
-            </div>
+      {content && (
+        <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+          <div className="flex items-center gap-2 mb-3">
+            <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
+            <span className="text-green-700 dark:text-green-300 font-medium">learning content</span>
           </div>
-        )}
-      </div>
+          <div className="prose prose-sm max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content}
+            </ReactMarkdown>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

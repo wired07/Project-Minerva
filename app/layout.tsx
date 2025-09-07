@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
-  title: 'AI Tutor - Personalized Learning with AI',
+  title: 'hi, i am minerva!',
   description: 'An intelligent tutoring system with AI Syllabus and AI Teacher agents powered by Gemini',
 }
 
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="font-system">
         {children}
       </body>
     </html>

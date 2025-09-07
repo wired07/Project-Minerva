@@ -66,43 +66,42 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+    <div className="card">
+      <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
-            <BookOpen className="w-6 h-6 text-white" />
+          <div className="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center">
+            <BookOpen className="w-5 h-5 text-white dark:text-black" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">AI Syllabus Agent</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Create your personalized learning curriculum</p>
+            <h2 className="text-lg font-semibold">syllabus agent</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">create your personalized learning curriculum</p>
           </div>
         </div>
         
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-          Tell me about yourself and your learning goals, and I'll create a personalized curriculum just for you!
+        <p className="section-content">
+          tell me about yourself and your learning goals, and i'll create a personalized curriculum just for you!
         </p>
       </div>
 
-      <div className="p-3 sm:p-4 lg:p-6">
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Previous Knowledge *
+            <label className="block text-sm font-medium mb-2">
+              previous knowledge *
             </label>
             <textarea
               name="previousKnowledge"
               value={formData.previousKnowledge}
               onChange={handleInputChange}
               className="input-field h-20 resize-none"
-              placeholder="Describe what you already know about the subject..."
+              placeholder="describe what you already know about the subject..."
               required
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Experience Level *
+            <label className="block text-sm font-medium mb-2">
+              experience level *
             </label>
             <select
               name="experience"
@@ -111,16 +110,16 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               className="input-field"
               required
             >
-              <option value="">Select your level</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
+              <option value="">select your level</option>
+              <option value="Beginner">beginner</option>
+              <option value="Intermediate">intermediate</option>
+              <option value="Advanced">advanced</option>
             </select>
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Class/Grade *
+            <label className="block text-sm font-medium mb-2">
+              class/grade *
             </label>
             <input
               type="text"
@@ -128,14 +127,14 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.class}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., Grade 10, College Freshman"
+              placeholder="e.g., grade 10, college freshman"
               required
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Test Scores (Optional)
+            <label className="block text-sm font-medium mb-2">
+              test scores (optional)
             </label>
             <input
               type="text"
@@ -143,13 +142,13 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.testScores}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., SAT: 1200, Math: 85%"
+              placeholder="e.g., sat: 1200, math: 85%"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Recent Grades (Optional)
+            <label className="block text-sm font-medium mb-2">
+              recent grades (optional)
             </label>
             <input
               type="text"
@@ -157,13 +156,13 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.grades}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., A in Math, B+ in Science"
+              placeholder="e.g., a in math, b+ in science"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Subjects of Interest *
+            <label className="block text-sm font-medium mb-2">
+              subjects of interest *
             </label>
             <input
               type="text"
@@ -171,22 +170,22 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
               value={formData.subjects}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="e.g., Mathematics, Physics, Chemistry"
+              placeholder="e.g., mathematics, physics, chemistry"
               required
             />
           </div>
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Learning Goals *
+          <label className="block text-sm font-medium mb-2">
+            learning goals *
           </label>
           <textarea
             name="learningGoals"
             value={formData.learningGoals}
             onChange={handleInputChange}
             className="input-field h-24 resize-none"
-            placeholder="What do you want to achieve? What are your learning objectives?"
+            placeholder="what do you want to achieve? what are your learning objectives?"
             required
           />
         </div>
@@ -199,38 +198,37 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Generating Curriculum...
+              generating curriculum...
             </>
           ) : (
             <>
               <BookOpen className="w-4 h-4" />
-              Generate My Curriculum
+              generate my curriculum
             </>
           )}
-          </button>
-        </form>
+        </button>
+      </form>
 
-        {error && (
-          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
-            <span className="text-red-700 dark:text-red-300">{error}</span>
-          </div>
-        )}
+      {error && (
+        <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400" />
+          <span className="text-red-700 dark:text-red-300">{error}</span>
+        </div>
+      )}
 
-        {curriculum && (
-          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-            <div className="flex items-center gap-2 mb-3">
-              <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
-              <span className="text-green-700 dark:text-green-300 font-medium">Your Personalized Curriculum</span>
-            </div>
-            <div className="prose prose-sm max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {curriculum}
-              </ReactMarkdown>
-            </div>
+      {curriculum && (
+        <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+          <div className="flex items-center gap-2 mb-3">
+            <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400" />
+            <span className="text-green-700 dark:text-green-300 font-medium">your personalized curriculum</span>
           </div>
-        )}
-      </div>
+          <div className="prose prose-sm max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {curriculum}
+            </ReactMarkdown>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
