@@ -48,65 +48,82 @@ export async function generateCurriculum(userData: {
   subjects: string[];
   learningGoals: string;
 }): Promise<GeminiResponse> {
-  const prompt = `
-You are an AI Syllabus Agent. Create a personalized curriculum based on the following user data:
+  const prompt = `Create a personalized curriculum for a ${userData.experience} level student in ${userData.class}.
 
-Previous Knowledge: ${userData.previousKnowledge}
-Experience Level: ${userData.experience}
-Class/Grade: ${userData.class}
-Test Scores: ${userData.testScores}
-Grades: ${userData.grades}
-Subjects of Interest: ${userData.subjects.join(', ')}
-Learning Goals: ${userData.learningGoals}
+**Student Profile:**
+- Previous Knowledge: ${userData.previousKnowledge}
+- Test Scores: ${userData.testScores}
+- Recent Grades: ${userData.grades}
+- Subjects: ${userData.subjects.join(', ')}
+- Learning Goals: ${userData.learningGoals}
 
-Please create a comprehensive, personalized curriculum that:
-1. Takes into account their current knowledge level
-2. Builds upon their existing skills
-3. Addresses any knowledge gaps
-4. Aligns with their learning goals
-5. Is appropriate for their class level
-6. Includes a logical progression of topics
-7. Suggests assessment methods
+**Requirements:**
+Format the curriculum with clear sections and numbered/bulleted topics for easy parsing:
 
-Format the response as a structured curriculum with:
-- Learning Objectives
-- Topic Sequence (with estimated time for each)
-- Prerequisites
-- Assessment Strategy
-- Recommended Resources
+## Learning Objectives
+• Objective 1
+• Objective 2
 
-Make it engaging and personalized to their specific needs.
-`;
+## Module 1: [Module Name]
+### Topic 1.1: [Topic Name]
+- Key concepts
+- Estimated time: X hours
+
+### Topic 1.2: [Topic Name]
+- Key concepts
+- Estimated time: X hours
+
+## Module 2: [Module Name]
+### Topic 2.1: [Topic Name]
+- Key concepts
+- Estimated time: X hours
+
+## Assessment Strategy
+• Assessment method 1
+• Assessment method 2
+
+## Recommended Resources
+• Resource 1
+• Resource 2
+
+Make it concise, well-structured, and focused on their specific needs.`;
 
   return generateText(prompt);
 }
 
 export async function teachTopic(topic: string, userLevel: string, context: string = ''): Promise<GeminiResponse> {
-  const prompt = `
-You are an AI Teacher Agent. Teach the following topic in an engaging, comprehensive way:
+  const prompt = `Teach "${topic}" to a ${userLevel} student. ${context ? `Additional context: ${context}` : ''}
 
-Topic: ${topic}
-User Level: ${userLevel}
-Context: ${context}
+Format your response with clear sections:
 
-Please provide:
-1. Clear explanation of the concept
-2. Real-world examples and applications
-3. Step-by-step breakdown if applicable
-4. Visual descriptions for graphs, diagrams, or images that would help
-5. Practice questions or exercises
-6. Common misconceptions to avoid
-7. Tips for better understanding
+## What is [Topic]?
+[Clear, concise definition]
 
-Make the explanation:
-- Age-appropriate for the user level
-- Engaging and interactive
-- Clear and easy to understand
-- Include practical examples
-- Suggest visual aids where helpful
+## Key Concepts
+• Concept 1: [Explanation]
+• Concept 2: [Explanation]
 
-Format your response in a structured way that's easy to follow.
-`;
+## Real-World Examples
+• Example 1: [Description]
+• Example 2: [Description]
+
+## Step-by-Step Process
+1. Step 1: [Description]
+2. Step 2: [Description]
+
+## Practice Questions
+1. Question 1
+2. Question 2
+
+## Common Mistakes to Avoid
+• Mistake 1: [Explanation]
+• Mistake 2: [Explanation]
+
+## Tips for Success
+• Tip 1
+• Tip 2
+
+Keep explanations clear, engaging, and appropriate for the student's level.`;
 
   return generateText(prompt);
 }

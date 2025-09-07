@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface SyllabusAgentProps {
-  onCurriculumGenerated: (curriculum: string) => void;
+  onCurriculumGenerated: (curriculum: string, topics: string[]) => void;
 }
 
 export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentProps) {
@@ -23,6 +23,41 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
   const [isLoading, setIsLoading] = useState(false);
   const [curriculum, setCurriculum] = useState('');
   const [error, setError] = useState('');
+
+  const extractTopicsFromCurriculum = (curriculumText: string): string[] => {
+    const topics: string[] = [];
+    const lines = curriculumText.split('\n');
+    
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      
+      // Look for numbered items, bullet points, or module headers
+      if (trimmedLine.match(/^\d+\.\s+/) || // 1. Topic
+          trimmedLine.match(/^[-•]\s+/) || // - Topic or • Topic
+          trimmedLine.match(/^##\s+/) || // ## Module Title
+          trimmedLine.match(/^###\s+/) || // ### Topic Title
+          trimmedLine.match(/^Module\s+\d+/i) || // Module 1:
+          trimmedLine.match(/^Chapter\s+\d+/i) || // Chapter 1:
+          trimmedLine.match(/^Unit\s+\d+/i)) { // Unit 1:
+        
+        // Clean up the topic name
+        let topic = trimmedLine
+          .replace(/^\d+\.\s+/, '') // Remove numbering
+          .replace(/^[-•]\s+/, '') // Remove bullet points
+          .replace(/^#+\s+/, '') // Remove markdown headers
+          .replace(/^(Module|Chapter|Unit)\s+\d+[:\-]\s*/i, '') // Remove module/chapter/unit prefixes
+          .trim();
+        
+        // Only add if it's a meaningful topic (not too short or too long)
+        if (topic.length > 3 && topic.length < 100 && !topic.match(/^\d+$/)) {
+          topics.push(topic);
+        }
+      }
+    }
+    
+    // Remove duplicates and limit to 15 topics
+    return [...new Set(topics)].slice(0, 15);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -57,7 +92,10 @@ export default function SyllabusAgent({ onCurriculumGenerated }: SyllabusAgentPr
       }
 
       setCurriculum(data.curriculum);
-      onCurriculumGenerated(data.curriculum);
+      
+      // Extract topics from curriculum
+      const topics = extractTopicsFromCurriculum(data.curriculum);
+      onCurriculumGenerated(data.curriculum, topics);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {

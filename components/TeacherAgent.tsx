@@ -7,9 +7,10 @@ import remarkGfm from 'remark-gfm';
 
 interface TeacherAgentProps {
   curriculum?: string;
+  syllabusTopics?: string[];
 }
 
-export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
+export default function TeacherAgent({ curriculum, syllabusTopics = [] }: TeacherAgentProps) {
   const [topic, setTopic] = useState('');
   const [userLevel, setUserLevel] = useState('');
   const [context, setContext] = useState('');
@@ -50,21 +51,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
     }
   };
 
-  const extractTopicsFromCurriculum = () => {
-    if (!curriculum) return [];
-    
-    // Simple extraction of topics from curriculum text
-    const lines = curriculum.split('\n');
-    const topics = lines
-      .filter(line => line.includes('•') || line.includes('-') || line.includes('1.') || line.includes('2.'))
-      .map(line => line.replace(/^[•\-\d\.\s]+/, '').trim())
-      .filter(topic => topic.length > 0 && topic.length < 100)
-      .slice(0, 10); // Limit to first 10 topics
-    
-    return topics;
-  };
-
-  const suggestedTopics = extractTopicsFromCurriculum();
+  const suggestedTopics = syllabusTopics;
 
   return (
     <div className="card">
@@ -85,7 +72,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
       </div>
 
       {curriculum && suggestedTopics.length > 0 && (
-        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div className="mb-6 p-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 rounded-lg backdrop-blur-sm">
           <h3 className="text-base font-medium mb-3 flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
             Suggested Topics From Your Curriculum
@@ -95,7 +82,7 @@ export default function TeacherAgent({ curriculum }: TeacherAgentProps) {
               <button
                 key={index}
                 onClick={() => setTopic(suggestedTopic)}
-                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm rounded-full transition-colors duration-200"
+                className="px-3 py-2 bg-white/70 dark:bg-gray-700/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-gray-800 dark:text-gray-200 text-sm rounded-lg transition-all duration-200 border border-gray-200/50 dark:border-gray-600/50 backdrop-blur-sm shadow-sm hover:shadow-md"
               >
                 {suggestedTopic}
               </button>
